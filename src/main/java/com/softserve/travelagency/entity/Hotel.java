@@ -8,13 +8,10 @@ import java.util.List;
 @Table(name = "hotels")
 public class Hotel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name")
     private String name;
-    @OneToMany
-    @JoinColumn(name = "hotel_id")
-    private List<Room> rooms = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
@@ -33,14 +30,6 @@ public class Hotel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
     }
 
     public Country getCountry() {

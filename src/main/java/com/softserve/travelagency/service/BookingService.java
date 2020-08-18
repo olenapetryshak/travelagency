@@ -1,11 +1,12 @@
 package com.softserve.travelagency.service;
 
-import entity.Booking;
+
+import com.softserve.travelagency.entity.Booking;
 
 import java.util.List;
 
 public interface BookingService {
-    Booking createBooking(Booking booking);
+    void createBooking(Booking booking);
 
     List<Booking>findUserBookings(Long userId);
 

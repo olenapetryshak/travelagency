@@ -1,15 +1,9 @@
-package com.softserve.travelagency.entity;
+package com.softserve.travelagency.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "countries")
-public class Country {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class HotelDTO {
     private Long id;
-    @Column(name = "name")
     private String name;
+    private Long countryId;
 
     public Long getId() {
         return id;
@@ -25,5 +19,13 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "bookings")
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -16,9 +16,9 @@ public class Booking {
     @OneToMany
     @JoinColumn(name = "booking_id")
     private List<Room> rooms;
-    @Column(name = "from")
+    @Column(name = "from_date")
     private LocalDate from;
-    @Column(name = "to")
+    @Column(name = "to_date")
     private LocalDate to;
 
     public Long getId() {

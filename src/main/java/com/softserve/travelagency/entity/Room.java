@@ -11,6 +11,9 @@ public class Room {
     private Long id;
     @Column(name = "price")
     private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     public Long getId() {
         return id;
@@ -26,5 +29,13 @@ public class Room {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 }
