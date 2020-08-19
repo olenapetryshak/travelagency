@@ -23,9 +23,15 @@ public class HotelController {
         this.countryService = countryService;
     }
 
-    @GetMapping("countries/{id}/hotels")
+    @GetMapping("/countries/{id}/hotels")
     public String findByCountryId(Model model, @PathVariable(name = "id") Long countryId) {
         List<Hotel> hotels = hotelService.findHotels(countryId);
+        model.addAttribute("hotels", hotels);
+        return "hotels";
+    }
+    @GetMapping("/hotels")
+    public String findAllHotels(Model model) {
+        List<Hotel> hotels = hotelService.findAll();
         model.addAttribute("hotels", hotels);
         return "hotels";
     }

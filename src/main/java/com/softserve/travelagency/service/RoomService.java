@@ -12,4 +12,6 @@ public interface RoomService {
     List<Room> findAvailableRooms(Long hotelId, LocalDate from, LocalDate to);
 
     void addRoomToHotel(Room room, Long hotelId);
+
+    Room findById(Long roomId);
 }

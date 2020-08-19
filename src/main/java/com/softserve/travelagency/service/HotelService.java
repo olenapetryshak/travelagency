@@ -11,4 +11,5 @@ public interface HotelService {
     void addHotel(Hotel hotel);
 
 
+    List<Hotel> findAll();
 }

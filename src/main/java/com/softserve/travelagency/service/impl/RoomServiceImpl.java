@@ -33,4 +33,9 @@ public class RoomServiceImpl implements RoomService {
     public void addRoomToHotel(Room room, Long hotelId) {
         roomRepository.addRoomToHotel(room, hotelId);
     }
+
+    @Override
+    public Room findById(Long roomId) {
+        return roomRepository.findById(roomId);
+    }
 }

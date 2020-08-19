@@ -10,4 +10,7 @@ public interface HotelRepository {
     List<Hotel> findByCountryId(Long countryId);
 
     void add(Hotel hotel);
+
+    List<Hotel> findAll();
+
 }

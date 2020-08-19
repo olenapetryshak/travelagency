@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface BookingRepository {
-    void createBooking(Booking booking);
+    Booking createBooking(Booking booking);
 
     List<Booking> findUserBookings(Long userId);
 
-    List<Booking> findHotelBookings(Long hotelId);
+    List<Booking> findUserBookings(String username);
 }

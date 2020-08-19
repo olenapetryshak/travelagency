@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomRepository {
-    public List<Room> findRooms(Long hotelId);
+    List<Room> findRooms(Long hotelId);
 
-    public List<Room> findAvailableRooms(Long hotelId, LocalDate from, LocalDate to);
+    List<Room> findAvailableRooms(Long hotelId, LocalDate from, LocalDate to);
 
-    public void addRoomToHotel(Room room, Long hotelId);
+    void addRoomToHotel(Room room, Long hotelId);
+
+    Room findById(Long roomId);
 }

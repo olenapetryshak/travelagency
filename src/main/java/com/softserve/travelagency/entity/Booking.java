@@ -3,6 +3,7 @@ package com.softserve.travelagency.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "bookings")
@@ -13,9 +14,9 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany
-    @JoinColumn(name = "booking_id")
-    private List<Room> rooms;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
     @Column(name = "from_date")
     private LocalDate from;
     @Column(name = "to_date")
@@ -37,12 +38,12 @@ public class Booking {
         this.user = user;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public LocalDate getFrom() {

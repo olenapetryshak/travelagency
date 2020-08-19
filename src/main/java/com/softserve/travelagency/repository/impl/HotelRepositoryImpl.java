@@ -41,4 +41,10 @@ public class HotelRepositoryImpl implements HotelRepository {
     public void add(Hotel hotel) {
         entityManager.persist(hotel);
     }
+
+    @Override
+    public List<Hotel> findAll() {
+        TypedQuery<Hotel> query = entityManager.createQuery("select h from Hotel h", Hotel.class);
+        return query.getResultList();
+    }
 }

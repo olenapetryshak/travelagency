@@ -15,7 +15,7 @@
         <tr>
             <td>${hotel.id}</td>
             <td>${hotel.name}</td>
-            <td><a href="${contextPath}/hotels/${hotel.id}/rooms">view </a> </td>
+            <td><a href="${contextPath}/hotels/${hotel.id}/find_rooms">view </a> </td>
         </tr>
     </c:forEach>
 </table>

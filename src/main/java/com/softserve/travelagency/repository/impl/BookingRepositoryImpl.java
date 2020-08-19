@@ -20,8 +20,9 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public void createBooking(Booking booking) {
+    public Booking createBooking(Booking booking) {
         entityManager.persist(booking);
+        return booking;
     }
 
     @Override
@@ -32,7 +33,9 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public List<Booking> findHotelBookings(Long hotelId) {
-        return null;
+    public List<Booking> findUserBookings(String username) {
+        TypedQuery<Booking> query = entityManager.createQuery("select b from Booking b where b.user.username= ?1", Booking.class);
+        query.setParameter(1, username);
+        return query.getResultList();
     }
 }

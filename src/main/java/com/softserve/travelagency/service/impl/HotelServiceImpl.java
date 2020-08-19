@@ -32,4 +32,9 @@ public class HotelServiceImpl implements HotelService {
     public void addHotel(Hotel hotel) {
         hotelRepository.add(hotel);
     }
+
+    @Override
+    public List<Hotel> findAll() {
+        return hotelRepository.findAll();
+    }
 }

@@ -2,6 +2,7 @@ package com.softserve.travelagency.controllers;
 
 import com.softserve.travelagency.dto.HotelDTO;
 import com.softserve.travelagency.dto.RoomDTO;
+import com.softserve.travelagency.dto.UserDTO;
 import com.softserve.travelagency.entity.Room;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.RoomService;
@@ -26,17 +27,27 @@ public class RoomController {
         this.hotelService = hotelService;
     }
 
-    @GetMapping("/hotels/{id}/rooms")
-    public String findRooms(Model model, @PathVariable(name = "id") Long hotelId) {
-        List<Room> rooms = roomService.findRooms(hotelId);
-        model.addAttribute("rooms", rooms);
+    @GetMapping("/hotels/{id}/find_rooms")
+    public String getFindRoomsPage(Model model, @PathVariable Long id) {
+        model.addAttribute("hotelId", id);
+        return "find_rooms";
+    }
+
+    @PostMapping("/rooms/available")
+    public String getAvailableRooms(
+            @RequestParam Long hotelId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to, Model model) {
+        model.addAttribute("availableRooms", roomService.findAvailableRooms(hotelId, from, to));
+        model.addAttribute("from",from);
+        model.addAttribute("to",to);
         return "rooms";
     }
 
     @GetMapping("/hotels/{id}/available_rooms")
     public String findAvailableRooms(Model model, @PathVariable(name = "id") Long hotelId,
-                                     @RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-                                     @RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
+                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
         List<Room> rooms = roomService.findAvailableRooms(hotelId, from, to);
         model.addAttribute("rooms", rooms);
         return "rooms";
@@ -61,4 +72,5 @@ public class RoomController {
         return "addRoom";
 
     }
+
 }
