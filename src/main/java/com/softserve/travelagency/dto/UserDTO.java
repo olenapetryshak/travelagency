@@ -1,30 +1,12 @@
-package com.softserve.travelagency.entity;
+package com.softserve.travelagency.dto;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+public class UserDTO {
 
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
-    @Column(unique = true)
     private String username;
     private String password;
-    @ManyToMany
-    @JoinTable(name = "role_user",
-            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")}
-    )
-    private Set<Role> roles = new HashSet<>();
-
 
     public Long getId() {
         return id;
@@ -64,13 +46,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

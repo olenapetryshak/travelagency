@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -18,18 +19,21 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/transactions/list?type=INCOME">Country</a>
+                <a class="nav-link" href="${contextPath}/countries">Country</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/transactions/list?type=EXPENSE">Hotel</a>
+                <a class="nav-link" href="${contextPath}/hotels">Hotel</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/balance">Room</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/categories/list">My bookings</a>
-            </li>
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/bookings">My bookings</a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('MANAGER')">
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/manager">Management</a>
+                </li>
+            </sec:authorize>
         </ul>
     </div>
 </nav>
