@@ -12,5 +12,4 @@ public interface BookingService {
 
     List<Booking>findHotelBookings(Long hotelId);
 
-
 }

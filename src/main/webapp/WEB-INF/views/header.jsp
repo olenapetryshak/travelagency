@@ -14,21 +14,21 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">Money-b</a>
+    <a class="navbar-brand" href="/">Travel-Agency</a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/transactions/list?type=INCOME">Income</a>
+                <a class="nav-link" href="${contextPath}/transactions/list?type=INCOME">Country</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/transactions/list?type=EXPENSE">Expense</a>
+                <a class="nav-link" href="${contextPath}/transactions/list?type=EXPENSE">Hotel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/balance">Balance</a>
+                <a class="nav-link" href="${contextPath}/balance">Room</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/categories/list">Categories</a>
+                <a class="nav-link" href="${contextPath}/categories/list">My bookings</a>
             </li>
         </ul>
     </div>

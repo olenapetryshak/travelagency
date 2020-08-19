@@ -4,18 +4,16 @@
 <jsp:include page="header.jsp"/>
 
 <div class="container p-2">
-    <h2>Select hotel</h2>
+    <h2>Select country</h2>
 </div>
 <table class="table table-hover table-responsive">
     <tr>
-        <th>id</th>
         <th>Name</th>
     </tr>
-    <c:forEach var="hotel" items="${hotels}">
+    <c:forEach var="country" items="${countries}">
         <tr>
-            <td>${hotel.id}</td>
-            <td>${hotel.name}</td>
-            <td><a href="${contextPath}/hotels/${hotel.id}/rooms">view </a> </td>
+            <td>${country.name}</td>
+            <td><a href="${contextPath}/countries/${country.id}/hotels">view </a> </td>
         </tr>
     </c:forEach>
 </table>

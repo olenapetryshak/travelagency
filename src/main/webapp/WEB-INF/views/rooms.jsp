@@ -14,7 +14,7 @@
     <c:forEach var="room" items="${rooms}">
         <tr>
             <td>${room.price}</td>
-            <td>${"some type"}</td>
+            <td>${room.type}</td>
         </tr>
     </c:forEach>
 </table>

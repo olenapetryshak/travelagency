@@ -6,6 +6,7 @@ public class RoomDTO {
 
     private Long id;
     private BigDecimal price;
+    private String type;
     private Long hotelId;
     private Long bookingId;
 
@@ -23,6 +24,14 @@ public class RoomDTO {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Long getHotelId() {
