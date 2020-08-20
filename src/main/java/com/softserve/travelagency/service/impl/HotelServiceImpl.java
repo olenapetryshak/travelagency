@@ -10,12 +10,11 @@ import java.util.List;
 @Service
 public class HotelServiceImpl implements HotelService {
 
-    private HotelRepository hotelRepository;
+    private final HotelRepository hotelRepository;
 
     @Autowired
     public HotelServiceImpl(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
-
     }
 
     @Override

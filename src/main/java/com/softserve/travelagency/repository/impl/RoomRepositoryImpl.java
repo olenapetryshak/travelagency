@@ -23,14 +23,10 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository {
 
     private final EntityManager entityManager;
-    private final HotelRepository hotelRepository;
-    private final BookingRepository bookingRepository;
 
     @Autowired
-    public RoomRepositoryImpl(EntityManager entityManager, HotelRepository hotelRepository, BookingRepository bookingRepository) {
+    public RoomRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.hotelRepository = hotelRepository;
-        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -48,11 +44,6 @@ public class RoomRepositoryImpl implements RoomRepository {
         query.setParameter(1, hotelId);
         query.setParameter(2, from);
         query.setParameter(3, to);
-
-//        Room room = new Room();
-//        room.setId(1L);
-//        room.setPrice(new BigDecimal(100));
-//        room.setType("Standart");
         return query.getResultList();
     }
 

@@ -10,7 +10,7 @@ public interface BookingRepository {
 
     void removeBooking(Long id);
 
-    public Booking findById(Long id);
+    Booking findById(Long id);
 
     List<Booking> findUserBookings(Long userId);
 
