@@ -1,9 +1,8 @@
 package com.softserve.travelagency.controllers;
 
-import com.softserve.travelagency.dto.HotelDTO;
 import com.softserve.travelagency.dto.RoomDTO;
-import com.softserve.travelagency.dto.UserDTO;
 import com.softserve.travelagency.entity.Room;
+import com.softserve.travelagency.service.CountryService;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,13 @@ public class RoomController {
 
     private final RoomService roomService;
     private final HotelService hotelService;
+    private final CountryService countryService;
 
     @Autowired
-    public RoomController(RoomService roomService, HotelService hotelService) {
+    public RoomController(RoomService roomService, HotelService hotelService, CountryService countryService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
+        this.countryService = countryService;
     }
 
     @GetMapping("/hotels/{id}/find_rooms")
@@ -53,24 +54,22 @@ public class RoomController {
         return "rooms";
     }
 
-    @GetMapping("hotels/rooms/{id}")
-    public String addRoom(Model model, @PathVariable(name = "id") Long countryId) {
+    @GetMapping("/hotels/{id}/rooms")
+    public String addRoom(Model model, @PathVariable Long id) {
         RoomDTO roomDTO = new RoomDTO();
+        roomDTO.setHotelId(id);
         model.addAttribute("room", roomDTO);
-        model.addAttribute("hotels", hotelService.findHotels(countryId));
         return "addRoom";
     }
 
-    @PostMapping("hotels/rooms/{id}")
+    @PostMapping("/rooms/new")
     public String addRoom(@ModelAttribute("room") RoomDTO roomDTO) {
         Room room = new Room();
-        room.setId(roomDTO.getId());
         room.setPrice(roomDTO.getPrice());
         room.setType(roomDTO.getType());
         room.setHotel(hotelService.findById(roomDTO.getHotelId()));
-        roomService.addRoomToHotel(room, room.getHotel().getId());
-        return "addRoom";
-
+        roomService.createRoom(room);
+        return "successAddRoom";
     }
 
 }

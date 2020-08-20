@@ -15,7 +15,7 @@
         <tr>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
-            <td><a href="${contextPath}/users/${user.id}/bookings">view </a> </td>
+            <td><a href="${contextPath}/users/${user.id}/bookings">bookings </a> </td>
         </tr>
     </c:forEach>
 </table>

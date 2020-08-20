@@ -48,4 +48,10 @@ public class Room {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
+
+    @Override
+    public String toString() {
+        return type +
+                ", price=" + price;
+    }
 }

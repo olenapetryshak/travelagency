@@ -6,7 +6,6 @@ import com.softserve.travelagency.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
 @Service
@@ -30,8 +29,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void addRoomToHotel(Room room, Long hotelId) {
-        roomRepository.addRoomToHotel(room, hotelId);
+    public void createRoom(Room room) {
+        roomRepository.createRoom(room);
     }
 
     @Override

@@ -7,9 +7,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface BookingService {
-    void createBooking(Booking booking);
 
     Booking createBooking(Long roomId, LocalDate from, LocalDate to);
+
+    void removeBooking(Long id);
+
+    Booking findById(Long id);
 
     List<Booking>findUserBookings(Long userId);
 

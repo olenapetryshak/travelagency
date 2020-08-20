@@ -13,7 +13,7 @@
     <c:forEach var="country" items="${countries}">
         <tr>
             <td>${country.name}</td>
-            <td><a href="${contextPath}/countries/${country.id}/hotels">view </a> </td>
+            <td><a href="${contextPath}/hotels?countryId=${country.id}">view </a> </td>
         </tr>
     </c:forEach>
 </table>

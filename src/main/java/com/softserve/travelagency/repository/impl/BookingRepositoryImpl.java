@@ -4,8 +4,8 @@ import com.softserve.travelagency.entity.Booking;
 import com.softserve.travelagency.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Access;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -23,6 +23,19 @@ public class BookingRepositoryImpl implements BookingRepository {
     public Booking createBooking(Booking booking) {
         entityManager.persist(booking);
         return booking;
+    }
+
+    @Transactional
+    @Override
+    public void removeBooking(Long id) {
+        entityManager.createQuery("delete from Booking b where b.id = ?1")
+                .setParameter(1, id)
+                .executeUpdate();
+    }
+
+    @Override
+    public Booking findById(Long id) {
+        return entityManager.find(Booking.class, id);
     }
 
     @Override

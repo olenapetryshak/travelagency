@@ -11,12 +11,17 @@
         <th>Id</th>
         <th>Date from</th>
         <th>Date to</th>
+        <th>Room</th>
+        <th>Hotel</th>
     </tr>
     <c:forEach var="booking" items="${bookings}">
         <tr>
             <td>${booking.id}</td>
             <td>${booking.from}</td>
             <td>${booking.to}</td>
+            <td>${booking.room}</td>
+            <td>${booking.room.hotel}</td>
+            <td><a href="${contextPath}/booking/${booking.id}/cancel_page">cancel </a> </td>
         </tr>
     </c:forEach>
 </table>

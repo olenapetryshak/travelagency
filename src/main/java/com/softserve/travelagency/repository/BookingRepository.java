@@ -8,6 +8,10 @@ import java.util.List;
 public interface BookingRepository {
     Booking createBooking(Booking booking);
 
+    void removeBooking(Long id);
+
+    public Booking findById(Long id);
+
     List<Booking> findUserBookings(Long userId);
 
     List<Booking> findUserBookings(String username);

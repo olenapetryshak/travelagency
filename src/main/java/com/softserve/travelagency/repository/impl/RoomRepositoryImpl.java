@@ -58,8 +58,7 @@ public class RoomRepositoryImpl implements RoomRepository {
 
     @Transactional
     @Override
-    public void addRoomToHotel(Room room, Long hotelId) {
-        room.setHotel(hotelRepository.findById(hotelId));
+    public void createRoom(Room room) {
         entityManager.persist(room);
     }
 

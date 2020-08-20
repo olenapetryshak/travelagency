@@ -23,20 +23,33 @@ public class HotelController {
         this.countryService = countryService;
     }
 
-    @GetMapping("/countries/{id}/hotels")
-    public String findByCountryId(Model model, @PathVariable(name = "id") Long countryId) {
-        List<Hotel> hotels = hotelService.findHotels(countryId);
-        model.addAttribute("hotels", hotels);
-        return "hotels";
-    }
+    //    @GetMapping("/countries/{id}/hotels")
+//    public String findByCountryId(Model model, @PathVariable(name = "id") Long countryId) {
+//        List<Hotel> hotels = hotelService.findHotels(countryId);
+//        model.addAttribute("hotels", hotels);
+//        return "hotels";
+//    }
     @GetMapping("/hotels")
-    public String findAllHotels(Model model) {
-        List<Hotel> hotels = hotelService.findAll();
+    public String findAllHotels(Model model, @RequestParam(required = false) Long countryId) {
+        List<Hotel> hotels;
+        if (countryId != null) {
+            model.addAttribute("currentCountry",countryService.findById(countryId));
+            hotels = hotelService.findHotels(countryId);
+        } else {
+            hotels = hotelService.findAll();
+        }
         model.addAttribute("hotels", hotels);
+        model.addAttribute("countries", countryService.findAll());
         return "hotels";
     }
 
-    @GetMapping("countries/hotels")
+    @GetMapping("/hotels/{id}/hotel")
+    public String findHotelById(@PathVariable Long id,Model model) {
+        model.addAttribute("hotel",hotelService.findById(id));
+        return "hotelInform";
+    }
+
+    @GetMapping("/hotels/new")
     public String addHotel(Model model) {
         HotelDTO hotel = new HotelDTO();
         model.addAttribute("hotel", hotel);
@@ -44,13 +57,13 @@ public class HotelController {
         return "addHotel";
     }
 
-    @PostMapping("countries/hotels")
-    public String addHotel(@ModelAttribute("hotel") HotelDTO hotel) {
+    @PostMapping("/hotels/new")
+    public String addHotel(@ModelAttribute("hotel") HotelDTO hotel, Model model) {
         Hotel newHotel = new Hotel();
-        newHotel.setId(hotel.getId());
         newHotel.setName(hotel.getName());
-        newHotel.setCountry(countryService.findById(hotel.getId()));
+        newHotel.setCountry(countryService.findById(hotel.getCountryId()));
         hotelService.addHotel(newHotel);
-        return "addHotel";
+        model.addAttribute("name", newHotel.getName());
+        return "successAddHotel";
     }
 }

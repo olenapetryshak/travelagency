@@ -20,21 +20,21 @@
 <div class="container p-4 my-2 border">
     <div class="row">
         <div class="col align-self-center">
-            <springForm:form modelAttribute="room">
+            <springForm:form modelAttribute="room" action="/rooms/new" method="post">
                 <springForm:hidden path="id"/>
+                <springForm:hidden path="hotelId"/>
                 <div class="form-group">
                     <label for="price">Price</label>
                     <springForm:input path="price" class="form-control" id="price"
                                       cssErrorClass="form-control is-invalid"/>
                     <springForm:errors path="price" cssClass="error"/>
                 </div>
-                <label for="name">Hotel</label>
-                <springForm:select path="hotelId" class="form-control" id="hotel"
-                                   cssErrorClass="form-control is-invalid">
-                    <springForm:option value="${null}" label="-------SELECT HOTEL-------"/>
-                    <springForm:options items="${hotels}" itemValue="id" itemLabel="name"/>
-                </springForm:select>
-                <springForm:errors path="hotelId" cssClass="error"/>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <springForm:input path="type" class="form-control" id="type"
+                                      cssErrorClass="form-control is-invalid"/>
+                    <springForm:errors path="type" cssClass="error"/>
+                </div>
                 <input type="submit" value="create">
             </springForm:form>
         </div>

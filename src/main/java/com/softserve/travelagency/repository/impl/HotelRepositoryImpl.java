@@ -24,9 +24,7 @@ public class HotelRepositoryImpl implements HotelRepository {
 
     @Override
     public Hotel findById(Long id) {
-        TypedQuery<Hotel> query = entityManager.createQuery("select h from Hotel h where h.id = ?1", Hotel.class);
-        query.setParameter(1, id);
-        return query.getSingleResult();
+        return entityManager.find(Hotel.class, id);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country findById(Long id) {
-        return null;
+        return countryRepository.findById(id);
     }
 
     @Override

@@ -27,12 +27,6 @@ public class BookingServiceImpl implements BookingService {
         this.userService = userService;
     }
 
-
-    @Override
-    public void createBooking(Booking booking) {
-        bookingRepository.createBooking(booking);
-    }
-
     @Override
     @Transactional
     public Booking createBooking(Long roomId, LocalDate from, LocalDate to) {
@@ -43,6 +37,16 @@ public class BookingServiceImpl implements BookingService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         booking.setUser(userService.findByName(username).orElseThrow(() -> new IllegalArgumentException("user is not found")));
         return bookingRepository.createBooking(booking);
+    }
+
+    @Override
+    public void removeBooking(Long id) {
+        bookingRepository.removeBooking(id);
+    }
+
+    @Override
+    public Booking findById(Long id) {
+        return bookingRepository.findById(id);
     }
 
 

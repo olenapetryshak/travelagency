@@ -21,9 +21,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     @Override
     public Country findById(Long id) {
-        TypedQuery<Country> query = entityManager.createQuery("select c from Country c where c.id = ?1", Country.class);
-        query.setParameter(1, id);
-        return query.getSingleResult();
+        return entityManager.find(Country.class, id);
     }
 
     @Override
